@@ -18,15 +18,17 @@ export default {
 
 		} else if (url.pathname == '/secure') {
 
-			var email = request.headers.get('cf-access-authenticated-user-email');
-			var cc = request.headers.get('cf-ipcountry');
-			var dt = new Date().toUTCString();
+			const dt = new Date().toUTCString();
+			const email = request.headers.get('cf-access-authenticated-user-email');
+			const cc = request.headers.get('cf-ipcountry');
+			const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+			const cn = regionNames.of(cc);
 
-			var resp = `<p>${email} authenticated at ${dt} from <a href="/secure/${cc}">${cc}</a></p>`;
+			const resp = `<p>${email} authenticated at ${dt} from <a href="/secure/${cc}">${cn}</a></p>`;
 			return new Response(resp, headersarg);
 
 		} else if (url.pathname.startsWith('/secure/')) {
-			var pts = url.pathname.split('/'); // Path TokenS
+			const pts = url.pathname.split('/'); // Path TokenS
 			const cc = pts[pts.length-1].toLowerCase();
 
 			switch (request.method) {
