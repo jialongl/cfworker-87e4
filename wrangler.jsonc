@@ -52,6 +52,6 @@
 	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
 
 	"routes": [
-		{"pattern": "https://tunnelx.jialong996.icu/secure*", "zone_name": "jialong996.icu"},
+		{"pattern": "https://tunnelx.jialong996.icu/*", "zone_name": "jialong996.icu"},
 	],
 }
